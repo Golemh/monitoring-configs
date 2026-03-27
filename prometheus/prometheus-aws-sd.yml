@@ -1,0 +1,39 @@
+# Prometheus Configuration — AWS EC2 Service Discovery
+#
+# Uses EC2 SD for auto-discovering Kafka instances.
+# Authentication via IAM Instance Profile (no secrets needed).
+#
+# Required variable (injected by cloud-init sed):
+#   AWS_REGION — AWS region for EC2 SD
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Kafka instances discovered via EC2 Service Discovery
+  - job_name: 'kafka'
+    ec2_sd_configs:
+      - region: ${AWS_REGION}
+        port: 7071
+
+    relabel_configs:
+      # Only scrape instances tagged with role=kafka
+      - source_labels: [__meta_ec2_tag_role]
+        regex: kafka
+        action: keep
+      # Use instance Name tag as instance label
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+      # Add VPC ID label
+      - source_labels: [__meta_ec2_vpc_id]
+        target_label: vpc_id
+      # Use private IP for scraping (instances are in the same VPC)
+      - source_labels: [__meta_ec2_private_ip]
+        replacement: '${1}:7071'
+        target_label: __address__
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

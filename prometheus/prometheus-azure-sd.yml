@@ -1,0 +1,38 @@
+# Prometheus Configuration — Azure Service Discovery
+#
+# Includes Azure SD for auto-discovering Kafka VMs.
+# Uses Managed Identity for authentication (no secrets needed).
+#
+# Required environment variables (set before deployment):
+#   AZURE_SUBSCRIPTION_ID     — Azure subscription ID
+#   AZURE_SD_CLIENT_ID        — User-assigned managed identity client ID
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Kafka VMs discovered via Azure Service Discovery
+  - job_name: 'kafka'
+    azure_sd_configs:
+      - authentication_method: ManagedIdentity
+        subscription_id: ${AZURE_SUBSCRIPTION_ID}
+        client_id: ${AZURE_SD_CLIENT_ID}
+        port: 7071
+
+    relabel_configs:
+      # Only scrape VMs tagged with role=kafka
+      - source_labels: [__meta_azure_machine_tag_role]
+        regex: kafka
+        action: keep
+      # Use VM name as instance label
+      - source_labels: [__meta_azure_machine_name]
+        target_label: instance
+      # Add resource group label
+      - source_labels: [__meta_azure_machine_resource_group]
+        target_label: resource_group
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
