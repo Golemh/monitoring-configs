@@ -33,6 +33,28 @@ scrape_configs:
         replacement: '${1}:7071'
         target_label: __address__
 
+  # Node exporter on all project VMs — system metrics (CPU, memory, disk, network)
+  - job_name: 'node'
+    ec2_sd_configs:
+      - region: ${AWS_REGION}
+        port: 9100
+
+    relabel_configs:
+      # Only scrape instances tagged with Project=kafka
+      - source_labels: [__meta_ec2_tag_Project]
+        regex: kafka
+        action: keep
+      # Use instance Name tag as instance label
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+      # Add role label from EC2 tag
+      - source_labels: [__meta_ec2_tag_role]
+        target_label: role
+      # Use private IP for scraping
+      - source_labels: [__meta_ec2_private_ip]
+        replacement: '${1}:9100'
+        target_label: __address__
+
   # Prometheus self-monitoring
   - job_name: 'prometheus'
     static_configs:
