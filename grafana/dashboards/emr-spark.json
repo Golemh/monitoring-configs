@@ -1,0 +1,552 @@
+{
+    "annotations": {
+        "list": []
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [
+                        {
+                            "options": {
+                                "0": {
+                                    "color": "red",
+                                    "text": "No Jobs"
+                                },
+                                "1": {
+                                    "color": "green",
+                                    "text": "Running"
+                                }
+                            },
+                            "type": "value"
+                        }
+                    ],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "red",
+                                "value": null
+                            },
+                            {
+                                "color": "green",
+                                "value": 1
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 6,
+                "x": 0,
+                "y": 0
+            },
+            "id": 1,
+            "options": {
+                "colorMode": "background",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "expression": "",
+                    "id": "",
+                    "matchExact": true,
+                    "metricEditorMode": 0,
+                    "metricName": "RunningWorkerCount",
+                    "metricQueryType": 0,
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum"
+                }
+            ],
+            "title": "Running Workers",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 6,
+                "x": 6,
+                "y": 0
+            },
+            "id": 2,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "CPUAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum"
+                }
+            ],
+            "title": "vCPUs Allocated",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "decgbytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 6,
+                "x": 12,
+                "y": 0
+            },
+            "id": 3,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "MemoryAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum"
+                }
+            ],
+            "title": "Memory Allocated",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "decgbytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 6,
+                "x": 18,
+                "y": 0
+            },
+            "id": 4,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "lastNotNull"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "StorageAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum"
+                }
+            ],
+            "title": "Storage Allocated",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 0,
+                "y": 4
+            },
+            "id": 5,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "desc"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "CPUAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum",
+                    "label": "vCPUs"
+                },
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "RunningWorkerCount",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "B",
+                    "region": "default",
+                    "statistic": "Maximum",
+                    "label": "Workers"
+                },
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "IdleWorkerCount",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "C",
+                    "region": "default",
+                    "statistic": "Maximum",
+                    "label": "Idle Workers"
+                }
+            ],
+            "title": "Worker & CPU Allocation (Over Time)",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "decgbytes"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 8,
+                "w": 12,
+                "x": 12,
+                "y": 4
+            },
+            "id": 6,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": {
+                    "mode": "multi",
+                    "sort": "desc"
+                }
+            },
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "MemoryAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Maximum",
+                    "label": "Memory"
+                },
+                {
+                    "datasource": {
+                        "type": "cloudwatch",
+                        "uid": "cloudwatch"
+                    },
+                    "dimensions": {},
+                    "metricName": "StorageAllocated",
+                    "namespace": "AWS/EMRServerless",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "B",
+                    "region": "default",
+                    "statistic": "Maximum",
+                    "label": "Storage"
+                }
+            ],
+            "title": "Memory & Storage Allocation (Over Time)",
+            "type": "timeseries"
+        }
+    ],
+    "refresh": "30s",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [
+        "spark",
+        "emr"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-3h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "EMR Spark Streaming",
+    "uid": "emr-spark",
+    "version": 1,
+    "weekStart": ""
+}
