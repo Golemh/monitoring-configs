@@ -581,6 +581,80 @@
             ],
             "title": "Total Messages by Topic",
             "type": "bargauge"
+        },
+        {
+            "datasource": { "type": "prometheus", "uid": "prometheus" },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisCenteredZero": false, "axisColorMode": "text", "axisLabel": "offset",
+                        "axisPlacement": "auto", "barAlignment": 0, "drawStyle": "line",
+                        "fillOpacity": 10, "gradientMode": "none",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "lineInterpolation": "smooth", "lineWidth": 2, "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" }, "showPoints": "never",
+                        "spanNulls": false, "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "mappings": [],
+                    "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 20 },
+            "id": 9,
+            "options": {
+                "legend": { "calcs": ["lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "mode": "multi", "sort": "desc" }
+            },
+            "targets": [
+                {
+                    "datasource": { "type": "prometheus", "uid": "prometheus" },
+                    "expr": "sum(max(kafka_log_log_logendoffset{topic!=\"\"}) by (topic, partition)) by (topic)",
+                    "legendFormat": "{{topic}} (log end)",
+                    "refId": "A"
+                }
+            ],
+            "title": "Total Offsets by Topic",
+            "type": "timeseries"
+        },
+        {
+            "datasource": { "type": "prometheus", "uid": "prometheus" },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisCenteredZero": false, "axisColorMode": "text", "axisLabel": "msg/sec",
+                        "axisPlacement": "auto", "barAlignment": 0, "drawStyle": "line",
+                        "fillOpacity": 10, "gradientMode": "none",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "lineInterpolation": "smooth", "lineWidth": 2, "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" }, "showPoints": "never",
+                        "spanNulls": false, "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "mappings": [],
+                    "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] }
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 20 },
+            "id": 10,
+            "options": {
+                "legend": { "calcs": ["mean", "max"], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "mode": "multi", "sort": "desc" }
+            },
+            "targets": [
+                {
+                    "datasource": { "type": "prometheus", "uid": "prometheus" },
+                    "expr": "sum(rate(kafka_server_brokertopicmetrics_messagesin_total{topic!=\"\"}[5m])) by (topic)",
+                    "legendFormat": "{{topic}} (producer in)",
+                    "refId": "A"
+                }
+            ],
+            "title": "Producer Ingestion Rate by Topic",
+            "type": "timeseries"
         }
     ],
     "refresh": "10s",
