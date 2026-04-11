@@ -13,160 +13,6 @@
             "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": { "mode": "thresholds" },
-                    "mappings": [
-                        {
-                            "options": {
-                                "0": { "color": "red", "text": "No Jobs" },
-                                "1": { "color": "green", "text": "Running" }
-                            },
-                            "type": "value"
-                        }
-                    ],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [
-                            { "color": "red", "value": null },
-                            { "color": "green", "value": 1 }
-                        ]
-                    }
-                },
-                "overrides": []
-            },
-            "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
-            "id": 1,
-            "options": {
-                "colorMode": "background",
-                "graphMode": "none",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-                "textMode": "auto"
-            },
-            "targets": [{
-                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "metricEditorMode": 1,
-                "metricQueryType": 1,
-                "sqlExpression": "SELECT MAX(RunningWorkerCount) FROM \"AWS/EMRServerless\"",
-                "refId": "A",
-                "region": "default",
-                "period": "60"
-            }],
-            "title": "Running Workers",
-            "type": "stat"
-        },
-        {
-            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-            "fieldConfig": {
-                "defaults": {
-                    "color": { "mode": "palette-classic" },
-                    "mappings": [],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{ "color": "green", "value": null }]
-                    },
-                    "unit": "short"
-                },
-                "overrides": []
-            },
-            "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
-            "id": 2,
-            "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-                "textMode": "auto"
-            },
-            "targets": [{
-                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "metricEditorMode": 1,
-                "metricQueryType": 1,
-                "sqlExpression": "SELECT MAX(CPUAllocated) FROM \"AWS/EMRServerless\"",
-                "refId": "A",
-                "region": "default",
-                "period": "60"
-            }],
-            "title": "vCPUs Allocated",
-            "type": "stat"
-        },
-        {
-            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-            "fieldConfig": {
-                "defaults": {
-                    "color": { "mode": "palette-classic" },
-                    "mappings": [],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{ "color": "green", "value": null }]
-                    },
-                    "unit": "decgbytes"
-                },
-                "overrides": []
-            },
-            "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
-            "id": 3,
-            "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-                "textMode": "auto"
-            },
-            "targets": [{
-                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "metricEditorMode": 1,
-                "metricQueryType": 1,
-                "sqlExpression": "SELECT MAX(MemoryAllocated) FROM \"AWS/EMRServerless\"",
-                "refId": "A",
-                "region": "default",
-                "period": "60"
-            }],
-            "title": "Memory Allocated",
-            "type": "stat"
-        },
-        {
-            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-            "fieldConfig": {
-                "defaults": {
-                    "color": { "mode": "palette-classic" },
-                    "mappings": [],
-                    "thresholds": {
-                        "mode": "absolute",
-                        "steps": [{ "color": "green", "value": null }]
-                    },
-                    "unit": "decgbytes"
-                },
-                "overrides": []
-            },
-            "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
-            "id": 4,
-            "options": {
-                "colorMode": "value",
-                "graphMode": "area",
-                "justifyMode": "auto",
-                "orientation": "auto",
-                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
-                "textMode": "auto"
-            },
-            "targets": [{
-                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "metricEditorMode": 1,
-                "metricQueryType": 1,
-                "sqlExpression": "SELECT MAX(StorageAllocated) FROM \"AWS/EMRServerless\"",
-                "refId": "A",
-                "region": "default",
-                "period": "60"
-            }],
-            "title": "Storage Allocated",
-            "type": "stat"
-        },
-        {
-            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-            "fieldConfig": {
-                "defaults": {
                     "color": { "mode": "palette-classic" },
                     "custom": {
                         "axisCenteredZero": false,
@@ -196,7 +42,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
             "id": 5,
             "options": {
                 "legend": {
@@ -212,7 +58,7 @@
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
                     "metricEditorMode": 1,
                     "metricQueryType": 1,
-                    "sqlExpression": "SELECT MAX(CPUAllocated) FROM \"AWS/EMRServerless\"",
+                    "sqlExpression": "SELECT MAX(CPUAllocated) FROM \"AWS/EMRServerless\" WHERE ApplicationId = '$app_id'",
                     "refId": "A",
                     "region": "default",
                     "period": "60",
@@ -222,7 +68,7 @@
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
                     "metricEditorMode": 1,
                     "metricQueryType": 1,
-                    "sqlExpression": "SELECT MAX(RunningWorkerCount) FROM \"AWS/EMRServerless\"",
+                    "sqlExpression": "SELECT MAX(RunningWorkerCount) FROM \"AWS/EMRServerless\" WHERE ApplicationId = '$app_id'",
                     "refId": "B",
                     "region": "default",
                     "period": "60",
@@ -232,7 +78,7 @@
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
                     "metricEditorMode": 1,
                     "metricQueryType": 1,
-                    "sqlExpression": "SELECT MAX(IdleWorkerCount) FROM \"AWS/EMRServerless\"",
+                    "sqlExpression": "SELECT MAX(IdleWorkerCount) FROM \"AWS/EMRServerless\" WHERE ApplicationId = '$app_id'",
                     "refId": "C",
                     "region": "default",
                     "period": "60",
@@ -275,7 +121,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
             "id": 6,
             "options": {
                 "legend": {
@@ -291,7 +137,7 @@
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
                     "metricEditorMode": 1,
                     "metricQueryType": 1,
-                    "sqlExpression": "SELECT MAX(MemoryAllocated) FROM \"AWS/EMRServerless\"",
+                    "sqlExpression": "SELECT MAX(MemoryAllocated) FROM \"AWS/EMRServerless\" WHERE ApplicationId = '$app_id'",
                     "refId": "A",
                     "region": "default",
                     "period": "60",
@@ -301,7 +147,7 @@
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
                     "metricEditorMode": 1,
                     "metricQueryType": 1,
-                    "sqlExpression": "SELECT MAX(StorageAllocated) FROM \"AWS/EMRServerless\"",
+                    "sqlExpression": "SELECT MAX(StorageAllocated) FROM \"AWS/EMRServerless\" WHERE ApplicationId = '$app_id'",
                     "refId": "B",
                     "region": "default",
                     "period": "60",
@@ -328,7 +174,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 4, "w": 6, "x": 0, "y": 12 },
+            "gridPos": { "h": 4, "w": 6, "x": 0, "y": 8 },
             "id": 7,
             "options": {
                 "colorMode": "background",
@@ -368,7 +214,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 4, "w": 6, "x": 6, "y": 12 },
+            "gridPos": { "h": 4, "w": 6, "x": 6, "y": 8 },
             "id": 8,
             "options": {
                 "colorMode": "background",
@@ -423,7 +269,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 12 },
             "id": 9,
             "options": {
                 "legend": {
@@ -495,7 +341,7 @@
                 },
                 "overrides": []
             },
-            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 12 },
             "id": 10,
             "options": {
                 "legend": {
@@ -520,7 +366,7 @@
             "type": "timeseries"
         }
     ],
-    "refresh": "30s",
+    "refresh": "1m",
     "schemaVersion": 38,
     "style": "dark",
     "tags": [
@@ -528,7 +374,38 @@
         "emr"
     ],
     "templating": {
-        "list": []
+        "list": [
+            {
+                "current": {},
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "definition": "",
+                "hide": 0,
+                "includeAll": false,
+                "label": "Application",
+                "multi": false,
+                "name": "app_id",
+                "options": [],
+                "query": {
+                    "attributeName": "",
+                    "dimensionFilters": {},
+                    "dimensionKey": "ApplicationId",
+                    "ec2Filters": {},
+                    "instanceID": "",
+                    "metricName": "RunningWorkerCount",
+                    "namespace": "AWS/EMRServerless",
+                    "queryType": "dimensionValues",
+                    "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+                    "region": "default",
+                    "resourceType": "",
+                    "tags": {}
+                },
+                "refresh": 2,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "type": "query"
+            }
+        ]
     },
     "time": {
         "from": "now-3h",
