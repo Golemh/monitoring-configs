@@ -561,7 +561,7 @@
             "pluginVersion": "10.0.0",
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["*"] },
+                "dimensions": { "Topic": ["bluesky-posts"] },
                 "metricName": "InputRowsPerSecond",
                 "namespace": "EMRServerless/Streaming",
                 "period": "60",
@@ -607,7 +607,7 @@
             "pluginVersion": "10.0.0",
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["*"] },
+                "dimensions": { "Topic": ["bluesky-posts"] },
                 "metricName": "BatchDurationMs",
                 "namespace": "EMRServerless/Streaming",
                 "period": "60",
@@ -669,7 +669,7 @@
             "targets": [
                 {
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                    "dimensions": { "Topic": ["*"] },
+                    "dimensions": { "Topic": ["bluesky-posts"] },
                     "metricName": "InputRowsPerSecond",
                     "namespace": "EMRServerless/Streaming",
                     "period": "60",
@@ -681,7 +681,7 @@
                 },
                 {
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                    "dimensions": { "Topic": ["*"] },
+                    "dimensions": { "Topic": ["bluesky-posts"] },
                     "metricName": "ProcessedRowsPerSecond",
                     "namespace": "EMRServerless/Streaming",
                     "period": "60",
@@ -749,7 +749,7 @@
             },
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["*"] },
+                "dimensions": { "Topic": ["bluesky-posts"] },
                 "metricName": "BatchDurationMs",
                 "namespace": "EMRServerless/Streaming",
                 "period": "60",
