@@ -527,6 +527,240 @@
             ],
             "title": "Memory & Storage Allocation (Over Time)",
             "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "thresholds" },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "red", "value": null },
+                            { "color": "green", "value": 1 }
+                        ]
+                    },
+                    "unit": "rowsps"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 6, "x": 0, "y": 12 },
+            "id": 7,
+            "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "dimensions": { "Topic": ["*"] },
+                "metricName": "InputRowsPerSecond",
+                "namespace": "EMRServerless/Streaming",
+                "period": "60",
+                "queryMode": "Metrics",
+                "refId": "A",
+                "region": "default",
+                "statistic": "Average"
+            }],
+            "title": "Input Rows/sec",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "thresholds" },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "green", "value": null },
+                            { "color": "yellow", "value": 50000 },
+                            { "color": "red", "value": 60000 }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 4, "w": 6, "x": 6, "y": 12 },
+            "id": 8,
+            "options": {
+                "colorMode": "background",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+                "textMode": "auto"
+            },
+            "pluginVersion": "10.0.0",
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "dimensions": { "Topic": ["*"] },
+                "metricName": "BatchDurationMs",
+                "namespace": "EMRServerless/Streaming",
+                "period": "60",
+                "queryMode": "Metrics",
+                "refId": "A",
+                "region": "default",
+                "statistic": "Average"
+            }],
+            "title": "Batch Duration",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "rows/sec",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [{ "color": "green", "value": null }]
+                    },
+                    "unit": "rowsps"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 16 },
+            "id": 9,
+            "options": {
+                "legend": {
+                    "calcs": ["mean", "max"],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": { "mode": "multi", "sort": "desc" }
+            },
+            "targets": [
+                {
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "dimensions": { "Topic": ["*"] },
+                    "metricName": "InputRowsPerSecond",
+                    "namespace": "EMRServerless/Streaming",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "A",
+                    "region": "default",
+                    "statistic": "Average",
+                    "label": "Input"
+                },
+                {
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "dimensions": { "Topic": ["*"] },
+                    "metricName": "ProcessedRowsPerSecond",
+                    "namespace": "EMRServerless/Streaming",
+                    "period": "60",
+                    "queryMode": "Metrics",
+                    "refId": "B",
+                    "region": "default",
+                    "statistic": "Average",
+                    "label": "Processed"
+                }
+            ],
+            "title": "Streaming Throughput (Over Time)",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "cloudwatch",
+                "uid": "cloudwatch"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisCenteredZero": false,
+                        "axisColorMode": "text",
+                        "axisLabel": "duration",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 15,
+                        "gradientMode": "none",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": {
+                            "mode": "line"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            { "color": "green", "value": null },
+                            { "color": "red", "value": 60000 }
+                        ]
+                    },
+                    "unit": "ms"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 16 },
+            "id": 10,
+            "options": {
+                "legend": {
+                    "calcs": ["mean", "max"],
+                    "displayMode": "table",
+                    "placement": "bottom",
+                    "showLegend": true
+                },
+                "tooltip": { "mode": "multi", "sort": "desc" }
+            },
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "dimensions": { "Topic": ["*"] },
+                "metricName": "BatchDurationMs",
+                "namespace": "EMRServerless/Streaming",
+                "period": "60",
+                "queryMode": "Metrics",
+                "refId": "A",
+                "region": "default",
+                "statistic": "Average",
+                "label": "Batch Duration"
+            }],
+            "title": "Batch Duration (Over Time)",
+            "type": "timeseries"
         }
     ],
     "refresh": "30s",
