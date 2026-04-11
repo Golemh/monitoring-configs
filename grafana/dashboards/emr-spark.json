@@ -10,26 +10,15 @@
     "liveNow": false,
     "panels": [
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "thresholds"
-                    },
+                    "color": { "mode": "thresholds" },
                     "mappings": [
                         {
                             "options": {
-                                "0": {
-                                    "color": "red",
-                                    "text": "No Jobs"
-                                },
-                                "1": {
-                                    "color": "green",
-                                    "text": "Running"
-                                }
+                                "0": { "color": "red", "text": "No Jobs" },
+                                "1": { "color": "green", "text": "Running" }
                             },
                             "type": "value"
                         }
@@ -37,270 +26,148 @@
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
-                            {
-                                "color": "red",
-                                "value": null
-                            },
-                            {
-                                "color": "green",
-                                "value": 1
-                            }
+                            { "color": "red", "value": null },
+                            { "color": "green", "value": 1 }
                         ]
                     }
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 4,
-                "w": 6,
-                "x": 0,
-                "y": 0
-            },
+            "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
             "id": 1,
             "options": {
                 "colorMode": "background",
                 "graphMode": "none",
                 "justifyMode": "auto",
                 "orientation": "auto",
-                "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
-                    "fields": "",
-                    "values": false
-                },
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "expression": "",
-                    "id": "",
-                    "matchExact": true,
-                    "metricEditorMode": 0,
-                    "metricName": "RunningWorkerCount",
-                    "metricQueryType": 0,
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
-                    "refId": "A",
-                    "region": "default",
-                    "statistic": "Maximum"
-                }
-            ],
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT MAX(RunningWorkerCount) FROM \"AWS/EMRServerless\"",
+                "refId": "A",
+                "region": "default",
+                "period": "60"
+            }],
             "title": "Running Workers",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
+                    "color": { "mode": "palette-classic" },
                     "mappings": [],
                     "thresholds": {
                         "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            }
-                        ]
+                        "steps": [{ "color": "green", "value": null }]
                     },
                     "unit": "short"
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 4,
-                "w": 6,
-                "x": 6,
-                "y": 0
-            },
+            "gridPos": { "h": 4, "w": 6, "x": 6, "y": 0 },
             "id": 2,
             "options": {
                 "colorMode": "value",
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
-                "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
-                    "fields": "",
-                    "values": false
-                },
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "CPUAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
-                    "refId": "A",
-                    "region": "default",
-                    "statistic": "Maximum"
-                }
-            ],
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT MAX(CPUAllocated) FROM \"AWS/EMRServerless\"",
+                "refId": "A",
+                "region": "default",
+                "period": "60"
+            }],
             "title": "vCPUs Allocated",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
+                    "color": { "mode": "palette-classic" },
                     "mappings": [],
                     "thresholds": {
                         "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            }
-                        ]
+                        "steps": [{ "color": "green", "value": null }]
                     },
                     "unit": "decgbytes"
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 4,
-                "w": 6,
-                "x": 12,
-                "y": 0
-            },
+            "gridPos": { "h": 4, "w": 6, "x": 12, "y": 0 },
             "id": 3,
             "options": {
                 "colorMode": "value",
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
-                "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
-                    "fields": "",
-                    "values": false
-                },
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "MemoryAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
-                    "refId": "A",
-                    "region": "default",
-                    "statistic": "Maximum"
-                }
-            ],
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT MAX(MemoryAllocated) FROM \"AWS/EMRServerless\"",
+                "refId": "A",
+                "region": "default",
+                "period": "60"
+            }],
             "title": "Memory Allocated",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
+                    "color": { "mode": "palette-classic" },
                     "mappings": [],
                     "thresholds": {
                         "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            }
-                        ]
+                        "steps": [{ "color": "green", "value": null }]
                     },
                     "unit": "decgbytes"
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 4,
-                "w": 6,
-                "x": 18,
-                "y": 0
-            },
+            "gridPos": { "h": 4, "w": 6, "x": 18, "y": 0 },
             "id": 4,
             "options": {
                 "colorMode": "value",
                 "graphMode": "area",
                 "justifyMode": "auto",
                 "orientation": "auto",
-                "reduceOptions": {
-                    "calcs": [
-                        "lastNotNull"
-                    ],
-                    "fields": "",
-                    "values": false
-                },
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
-            "targets": [
-                {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "StorageAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
-                    "refId": "A",
-                    "region": "default",
-                    "statistic": "Maximum"
-                }
-            ],
+            "targets": [{
+                "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT MAX(StorageAllocated) FROM \"AWS/EMRServerless\"",
+                "refId": "A",
+                "region": "default",
+                "period": "60"
+            }],
             "title": "Storage Allocated",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
+                    "color": { "mode": "palette-classic" },
                     "custom": {
                         "axisCenteredZero": false,
                         "axisColorMode": "text",
@@ -310,107 +177,65 @@
                         "drawStyle": "line",
                         "fillOpacity": 15,
                         "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
                         "lineInterpolation": "smooth",
                         "lineWidth": 2,
                         "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
+                        "scaleDistribution": { "type": "linear" },
                         "showPoints": "never",
                         "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
                     },
                     "mappings": [],
                     "thresholds": {
                         "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            }
-                        ]
+                        "steps": [{ "color": "green", "value": null }]
                     },
                     "unit": "short"
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 8,
-                "w": 12,
-                "x": 0,
-                "y": 4
-            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 4 },
             "id": 5,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "mean",
-                        "max"
-                    ],
+                    "calcs": ["mean", "max"],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
-                "tooltip": {
-                    "mode": "multi",
-                    "sort": "desc"
-                }
+                "tooltip": { "mode": "multi", "sort": "desc" }
             },
             "targets": [
                 {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "CPUAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT MAX(CPUAllocated) FROM \"AWS/EMRServerless\"",
                     "refId": "A",
                     "region": "default",
-                    "statistic": "Maximum",
+                    "period": "60",
                     "label": "vCPUs"
                 },
                 {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "RunningWorkerCount",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT MAX(RunningWorkerCount) FROM \"AWS/EMRServerless\"",
                     "refId": "B",
                     "region": "default",
-                    "statistic": "Maximum",
+                    "period": "60",
                     "label": "Workers"
                 },
                 {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "IdleWorkerCount",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT MAX(IdleWorkerCount) FROM \"AWS/EMRServerless\"",
                     "refId": "C",
                     "region": "default",
-                    "statistic": "Maximum",
+                    "period": "60",
                     "label": "Idle Workers"
                 }
             ],
@@ -418,15 +243,10 @@
             "type": "timeseries"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
-                    "color": {
-                        "mode": "palette-classic"
-                    },
+                    "color": { "mode": "palette-classic" },
                     "custom": {
                         "axisCenteredZero": false,
                         "axisColorMode": "text",
@@ -436,92 +256,55 @@
                         "drawStyle": "line",
                         "fillOpacity": 15,
                         "gradientMode": "none",
-                        "hideFrom": {
-                            "legend": false,
-                            "tooltip": false,
-                            "viz": false
-                        },
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
                         "lineInterpolation": "smooth",
                         "lineWidth": 2,
                         "pointSize": 5,
-                        "scaleDistribution": {
-                            "type": "linear"
-                        },
+                        "scaleDistribution": { "type": "linear" },
                         "showPoints": "never",
                         "spanNulls": false,
-                        "stacking": {
-                            "group": "A",
-                            "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                            "mode": "off"
-                        }
+                        "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
                     },
                     "mappings": [],
                     "thresholds": {
                         "mode": "absolute",
-                        "steps": [
-                            {
-                                "color": "green",
-                                "value": null
-                            }
-                        ]
+                        "steps": [{ "color": "green", "value": null }]
                     },
                     "unit": "decgbytes"
                 },
                 "overrides": []
             },
-            "gridPos": {
-                "h": 8,
-                "w": 12,
-                "x": 12,
-                "y": 4
-            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 4 },
             "id": 6,
             "options": {
                 "legend": {
-                    "calcs": [
-                        "mean",
-                        "max"
-                    ],
+                    "calcs": ["mean", "max"],
                     "displayMode": "table",
                     "placement": "bottom",
                     "showLegend": true
                 },
-                "tooltip": {
-                    "mode": "multi",
-                    "sort": "desc"
-                }
+                "tooltip": { "mode": "multi", "sort": "desc" }
             },
             "targets": [
                 {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "MemoryAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT MAX(MemoryAllocated) FROM \"AWS/EMRServerless\"",
                     "refId": "A",
                     "region": "default",
-                    "statistic": "Maximum",
+                    "period": "60",
                     "label": "Memory"
                 },
                 {
-                    "datasource": {
-                        "type": "cloudwatch",
-                        "uid": "cloudwatch"
-                    },
-                    "dimensions": {},
-                    "metricName": "StorageAllocated",
-                    "namespace": "AWS/EMRServerless",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT MAX(StorageAllocated) FROM \"AWS/EMRServerless\"",
                     "refId": "B",
                     "region": "default",
-                    "statistic": "Maximum",
+                    "period": "60",
                     "label": "Storage"
                 }
             ],
@@ -529,10 +312,7 @@
             "type": "timeseries"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
                     "color": { "mode": "thresholds" },
@@ -558,26 +338,20 @@
                 "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["bluesky-posts"] },
-                "metricName": "InputRowsPerSecond",
-                "namespace": "EMRServerless/Streaming",
-                "period": "60",
-                "queryMode": "Metrics",
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT AVG(InputRowsPerSecond) FROM \"EMRServerless/Streaming\" GROUP BY Topic",
                 "refId": "A",
                 "region": "default",
-                "statistic": "Average"
+                "period": "60"
             }],
             "title": "Input Rows/sec",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
                     "color": { "mode": "thresholds" },
@@ -604,26 +378,20 @@
                 "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
                 "textMode": "auto"
             },
-            "pluginVersion": "10.0.0",
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["bluesky-posts"] },
-                "metricName": "BatchDurationMs",
-                "namespace": "EMRServerless/Streaming",
-                "period": "60",
-                "queryMode": "Metrics",
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT AVG(BatchDurationMs) FROM \"EMRServerless/Streaming\" GROUP BY Topic",
                 "refId": "A",
                 "region": "default",
-                "statistic": "Average"
+                "period": "60"
             }],
             "title": "Batch Duration",
             "type": "stat"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
                     "color": { "mode": "palette-classic" },
@@ -669,26 +437,22 @@
             "targets": [
                 {
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                    "dimensions": { "Topic": ["bluesky-posts"] },
-                    "metricName": "InputRowsPerSecond",
-                    "namespace": "EMRServerless/Streaming",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT AVG(InputRowsPerSecond) FROM \"EMRServerless/Streaming\" GROUP BY Topic",
                     "refId": "A",
                     "region": "default",
-                    "statistic": "Average",
+                    "period": "60",
                     "label": "Input"
                 },
                 {
                     "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                    "dimensions": { "Topic": ["bluesky-posts"] },
-                    "metricName": "ProcessedRowsPerSecond",
-                    "namespace": "EMRServerless/Streaming",
-                    "period": "60",
-                    "queryMode": "Metrics",
+                    "metricEditorMode": 1,
+                    "metricQueryType": 1,
+                    "sqlExpression": "SELECT AVG(ProcessedRowsPerSecond) FROM \"EMRServerless/Streaming\" GROUP BY Topic",
                     "refId": "B",
                     "region": "default",
-                    "statistic": "Average",
+                    "period": "60",
                     "label": "Processed"
                 }
             ],
@@ -696,10 +460,7 @@
             "type": "timeseries"
         },
         {
-            "datasource": {
-                "type": "cloudwatch",
-                "uid": "cloudwatch"
-            },
+            "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
             "fieldConfig": {
                 "defaults": {
                     "color": { "mode": "palette-classic" },
@@ -720,9 +481,7 @@
                         "showPoints": "never",
                         "spanNulls": false,
                         "stacking": { "group": "A", "mode": "none" },
-                        "thresholdsStyle": {
-                            "mode": "line"
-                        }
+                        "thresholdsStyle": { "mode": "line" }
                     },
                     "mappings": [],
                     "thresholds": {
@@ -749,14 +508,12 @@
             },
             "targets": [{
                 "datasource": { "type": "cloudwatch", "uid": "cloudwatch" },
-                "dimensions": { "Topic": ["bluesky-posts"] },
-                "metricName": "BatchDurationMs",
-                "namespace": "EMRServerless/Streaming",
-                "period": "60",
-                "queryMode": "Metrics",
+                "metricEditorMode": 1,
+                "metricQueryType": 1,
+                "sqlExpression": "SELECT AVG(BatchDurationMs) FROM \"EMRServerless/Streaming\" GROUP BY Topic",
                 "refId": "A",
                 "region": "default",
-                "statistic": "Average",
+                "period": "60",
                 "label": "Batch Duration"
             }],
             "title": "Batch Duration (Over Time)",
