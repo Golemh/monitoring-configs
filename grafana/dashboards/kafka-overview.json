@@ -122,7 +122,7 @@
                         "type": "prometheus",
                         "uid": "prometheus"
                     },
-                    "expr": "sum(kafka_server_brokertopicmetrics_messagesin_total)",
+                    "expr": "sum(max(kafka_log_log_logendoffset{topic!=\"\"}) by (topic, partition))",
                     "refId": "A"
                 }
             ],
@@ -574,7 +574,7 @@
                         "type": "prometheus",
                         "uid": "prometheus"
                     },
-                    "expr": "sum(kafka_server_brokertopicmetrics_messagesin_total{topic!=\"\"}) by (topic)",
+                    "expr": "sum(max(kafka_log_log_logendoffset{topic!=\"\"}) by (topic, partition)) by (topic)",
                     "legendFormat": "{{topic}}",
                     "refId": "A"
                 }
@@ -654,6 +654,81 @@
                 }
             ],
             "title": "Producer Ingestion Rate by Topic",
+            "type": "timeseries"
+        },
+        {
+            "datasource": { "type": "prometheus", "uid": "prometheus" },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "thresholds" },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "percentage",
+                        "steps": [
+                            { "color": "green", "value": null },
+                            { "color": "yellow", "value": 70 },
+                            { "color": "red", "value": 85 }
+                        ]
+                    },
+                    "max": 100,
+                    "min": 0,
+                    "unit": "percent"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 0, "y": 28 },
+            "id": 11,
+            "options": {
+                "displayMode": "gradient",
+                "minVizHeight": 10,
+                "minVizWidth": 0,
+                "orientation": "horizontal",
+                "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+                "showUnfilled": true
+            },
+            "targets": [{
+                "datasource": { "type": "prometheus", "uid": "prometheus" },
+                "expr": "100 - ((node_filesystem_avail_bytes{mountpoint=\"/data\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/data\"})",
+                "legendFormat": "{{instance}}",
+                "refId": "A"
+            }],
+            "title": "Data Disk Usage % (per broker)",
+            "type": "bargauge"
+        },
+        {
+            "datasource": { "type": "prometheus", "uid": "prometheus" },
+            "fieldConfig": {
+                "defaults": {
+                    "color": { "mode": "palette-classic" },
+                    "custom": {
+                        "axisCenteredZero": false, "axisColorMode": "text", "axisLabel": "bytes",
+                        "axisPlacement": "auto", "barAlignment": 0, "drawStyle": "line",
+                        "fillOpacity": 10, "gradientMode": "none",
+                        "hideFrom": { "legend": false, "tooltip": false, "viz": false },
+                        "lineInterpolation": "smooth", "lineWidth": 2, "pointSize": 5,
+                        "scaleDistribution": { "type": "linear" }, "showPoints": "never",
+                        "spanNulls": false, "stacking": { "group": "A", "mode": "none" },
+                        "thresholdsStyle": { "mode": "off" }
+                    },
+                    "mappings": [],
+                    "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }] },
+                    "unit": "bytes"
+                },
+                "overrides": []
+            },
+            "gridPos": { "h": 8, "w": 12, "x": 12, "y": 28 },
+            "id": 12,
+            "options": {
+                "legend": { "calcs": ["lastNotNull"], "displayMode": "table", "placement": "bottom", "showLegend": true },
+                "tooltip": { "mode": "multi", "sort": "desc" }
+            },
+            "targets": [{
+                "datasource": { "type": "prometheus", "uid": "prometheus" },
+                "expr": "node_filesystem_size_bytes{mountpoint=\"/data\"} - node_filesystem_avail_bytes{mountpoint=\"/data\"}",
+                "legendFormat": "{{instance}}",
+                "refId": "A"
+            }],
+            "title": "Data Disk Used (per broker, over time)",
             "type": "timeseries"
         }
     ],
